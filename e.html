@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="val.css">
+    <title>e</title>
+</head>
+<body>
+
+<div id="password-screen" style="position: fixed; inset: 0; background: #fce4ec; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Quicksand', sans-serif;">
+    <h2 style="color: #ff4d4d; font-weight: 200; margin-bottom: 20px;">Enter the Secret Code</h2>
+    
+    <input type="password" id="password-input" placeholder="Password..." 
+        style="padding: 12px 20px; border: 2px solid #ff4d4d; border-radius: 25px; outline: none; text-align: center; font-size: 1rem; width: 250px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    
+    <p id="error-msg" style="color: #d32f2f; font-size: 0.9rem; margin-top: 15px; display: none;">Oops! Wrong code. Try again? ❤️</p>
+</div>
+
+    <div id="main-content" class="container" style="display: none;">
+        
+        <div class="game-hub">
+            <h1 class="hub-title">Farewell Web?</h1>
+
+<div class="jar-section">
+    <h5>Kada araw na 'di tayo magkasama, may utang ako sayo isang flower. 😛</h5>
+    <div class="jar-visual">🫙</div>
+    
+    <button id="draw-note-btn" onclick="openJar()">
+        Pull a Note
+    </button>
+    
+    <div id="note-display" class="note-paper">
+        e
+    </div>
+    
+    <p id="jar-status"></p>
+</div>
+
+<h2 class="hub-title">The Quiz</h2>
+    
+    <button id="ready-btn" class="start-quiz-btn" onclick="startQuiz()">Ready to Play!</button>
+
+    <div id="quiz-container" style="display: none; opacity: 0;">
+        <p id="question-text" style="font-weight: bold; margin-bottom: 20px;"></p>
+        <div id="options-grid" class="options-grid">
+            </div>
+    </div>
+        </div>
+
+        <div class="corner-feature">
+            <div id="open-letter-btn" class="heart beating small-heart" style="cursor: pointer;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg" alt="heart">
+            </div>
+ <div id="letter-page" style="display: none; position: fixed; inset: 0; background: rgba(252, 228, 236, 0.95); z-index: 5000; overflow-y: auto;">
+    
+    <button id="close-letter-btn" style="position: fixed; top: 20px; right: 20px; z-index: 6000; background: white; border: 1px solid #ff4d4d; border-radius: 20px; padding: 5px 15px; cursor: pointer;">CLOSE [X]</button>
+
+    <div class="letter-paper">
+        
+        <div id="letter-lock-screen" style="text-align: center;">
+            <h2 style="font-family: 'Cinzel', serif; color: #ff4d4d;">Meron pa..</h2>
+            <p style="font-family: 'Quicksand', sans-serif;">Enter the secret word (First letters of correct answers)</p>
+            <input type="password" id="letter-pass-input" style="padding: 10px; border: 2px solid #ff4d4d; border-radius: 20px; text-align: center; margin-bottom: 10px;">
+            <br>
+            <button onclick="unlockLetterContent()" style="background: #ff4d4d; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer;">Unlock Heart</button>
+            <p id="letter-error-msg" style="color: #d32f2f; display: none; margin-top: 10px;">Mali.</p>
+        </div>
+
+        <div id="letter-actual-content" style="display: none;">
+            <h1 class="letter-title" style="text-align: center; color: #ff4d4d;">Prinsesaa</h1>
+            
+            <div id="p1" class="letter-body" style="line-height: 1.8; margin-bottom: 20px;">
+                Dear Izhelle, <br>
+                As you're reading this letter, we know na we only have a few more moments to share before we part ways. I just want to say that I'm sooo proud of youu. Thank you for being my inspiration in the last 3 years. We faced many challenges pero, nonetheless, nakapagtapos tayo and I'm so grateful to have chosen you. Ikaw lang talaga ang mamahalin ko in this way. What I feel isn't temporary, it's not something I can switch off when it gets inconvenient. I told you, it's you or no one. I know I've said this many times, pero I don't think I've said it enough. If you don't believe how sure I am when it comes to you, I promise you that I never had my eyes on another woman during these 3 years, and I'm sure that it'll be the same in the upcoming years. You became the comfort I never knew I was searching for. Although we had many uncomfortable conversations and arguments, I want you to know that me persistently telling you to communicate with me was because I really wanted to learn you, to understand you deeper. I admire everything about you, how you handle the class when everyone isn't paying attention, or how you take care of the people you love, admire babies, and make corny jokes. You always bring joy to the people around you and that's only one of the reasons that make you so loveable. 
+                <br>
+                Sorry, I couldn't show you how much you meant to me during the past 3 years. Sorry if I was avoidant before, lalo na nung pumunta akong Taiwan. Sa totoo lang, I stopped talking to you nun kasi nawalan ako ng gana sa mga reposts mo. Idk, it felt as if ikaw yung tipong alam mong may humahabol sayo pero wala kang pake sa nararamdaman niya. Recently, naisip ko rin tanungin ka kung pwede kitang ligawan, pero I would probably only be a burden to your studies since I wouldn't be able to make much effort to lessen the pressure sa UST since magkalayo tayo sa isa't isa. Also, I'm sure you'll find better there kaya I know you'll be okay. 
+            </div>
+
+            <div id="p2" class="letter-body" style="display: none; line-height: 1.8; margin-bottom: 20px;">
+                Suss, hindi naman talaga ako yung balak mong makasamang magtanda eh HAHAHAHAHA jokee. I'm sorry for growing this attached to you. Dw, I won't expect too much kasi alam kong I probably won't be the one you'll choose in front of many options. I don't know why I feel this way, pero pag nakikita kong nagpapapansin ka o nagiging sobrang malapit sa ibang lalaki, natturn-off ako pero it still doesn't affect how much I love you. I don't want to admit it pero I don't trust people easily when it comes to things that involve my own emotions. Everytime I see you getting to intimate with someone else, pabawas ng pabawas yung tiwala ko sayo. I trust your reassurances, pero over the years, I've developed this feeling of uncertainty na wala ka naman balak panindigan yung sinabi mo dahil sa similar behavior na pinapakita mo sa iba. Ever since nung seniors' night, it became much harder to trust you. I saw how excited you were while looking for Jimmar para mag slow dance kayo. You told me you didn't want to when I asked you kung pwede tayo mag slow dance, pero you couldn't hide you happiness na sumayaw kasama siya. Nagtaka ako kung backup option mo lang ako o ginagawa mo lang akong bagay para sa kasiyahan mo. I didn't even bother thinking about it nun pero sobrang attached talaga ng puso ko sayo. Masakit sa olivan pride ko na maging sobrang attached sayo boi HAHAHAHAHA. After that, I still kept seeing you go near him to the point na sumanday ka pa sakanya nung recollection. I couldn't figure out kung you'd stay loyal if we eventually make this work kasi your actions and reposts say otherwise. Dun na talaga ako nagsimulang tumigil na mag-expect. Yet it's weird how I'm so gentle and patient when it comes to you. Normally, I would have treated you differently, pero for some reason, I'm so gentle and patient when it comes to you. As if I was talking to my own daughter. Tbh, you probably wouldn't even stay if I did the same thing to you multiple times. I know that you're unsure about me, and it doesn't change the fact that I'd still pursue you, pero kung ang ibig mong sabihin ng unsure ay magttry ka ng iba, I'll leave silently. Pero, one thing's for certain, I'll love you always. Wala na talaga dignidad ko pagdating sayo HAHAHAHA. This'll be my first and last time being like this. For some reason, sayo ko lang talaga kayang sabihin nararamdaman ko pag ganto HAHAHAHAH.
+            </div>
+
+            <div id="p3" class="letter-body" style="display: none;">
+                To this adorable crybaby, I know you probably don't see it, but I love you so much, even when you go quiet for no reason, even during times when you seem sad, and even when things feel heavy. Even when I'm mad, I try to stay soft, stay kind, and stay patient kasi I'm afraid of hurting your manhid, yet seemingly fragile heart. After all we've been through, I've realized that loving means to give without expecting anything back. I have this urge na protektahan ka palagi kahit minsan nasasaktan din ako. As we enter this new chapter, I want you to focus on your goals muna, pero just know that I'm always gonna be here to listen to you yap, and teach you math lessons that you can't understand. I'll always be your biggest supporter. Whenever you feel like giving up, come to me, I'll be here to cheer you up. Sumbong ka sakin kung may nagaaway sayo ah, tutulungan ko siya HAHAHAHAH. Pero one thing's for certain, I care about you more than words can say. Take care of yourself ah. Laging kumain sa tamang oras at uminom ng tubig lagi. Bawasan ang pag-inom ng coke HAHAHAHAH. 'Wag na rin maging manhid at maldita. Please choose the right person who makes you happy and will treat you rightt. I'm gonna miss seeing your face in person, lalo na hugs moo. I love you 3000. Isaiah 60:22  
+                <div class="letter-footer">
+                    <p>Sincerely Yours,</p>
+                    <p style="font-size: 1.5rem;">E</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+            <div class="letter-pagination">
+                <button id="prev-page-btn" onclick="flipPage(currentPage - 1)">Back ⬅</button>
+                <button id="next-page-btn" onclick="flipPage(currentPage + 1)">Next Page ➔</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="pass.js"></script>
+    <script src="js.js"></script>
+    <script src="js2.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

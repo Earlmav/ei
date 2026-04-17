@@ -1,0 +1,363 @@
+/* --- 1. GLOBAL RESET & THEME --- */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    background-color: #fce4ec; /* Soft Pink */
+    font-family: "Quicksand", sans-serif;
+    color: #444;
+    overflow-x: hidden;
+}
+
+/* --- 2. THE GATEKEEPER (Password Screen) --- */
+#password-screen {
+    position: fixed;
+    inset: 0;
+    background: #fce4ec;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.password-fade-out {
+    filter: blur(20px);
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.1);
+}
+
+/* --- 3. MAIN GAME HUB (Layer 1) --- */
+#main-content {
+    display: none; /* Initially hidden until password success */
+    opacity: 0;
+    transition: opacity 1s ease;
+    padding-bottom: 100px; /* Space for the corner heart */
+}
+
+.game-hub {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.hub-title {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    color: #ff4d4d;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.jar-section {
+    background: white;
+    padding: 40px; /* Increase padding for a bigger look */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1);
+    text-align: center;
+    
+    /* ADD THESE TWO LINES */
+    min-height: 300px; /* Forces the jar area to stay tall */
+    flex-shrink: 0;    /* Prevents the hub from squeezing it */
+}
+
+.jar-visual {
+    font-size: 80px;  /* Make the jar emoji/icon bigger */
+    margin-bottom: 20px;
+}
+
+#draw-note-btn, .quiz-btn {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#draw-note-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+}
+
+#draw-note-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+}
+
+.note-paper {
+    background-color: #fff9e6; /* Old paper yellow */
+    border-left: 5px solid #ff4d4d; /* A nice red accent */
+    padding: 15px;
+    margin-top: 20px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cursive', sans-serif; /* Give it a handwritten feel */
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.quiz-btn {
+    padding: 12px;
+    border: 1.5px solid #ff4d4d;
+    background: white;
+    border-radius: 12px;
+    color: #ff4d4d;
+}
+
+.quiz-btn:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+/* --- 5. THE FULL-PAGE OVERLAY (Layer 2) --- */
+#letter-page {
+    position: fixed;
+    inset: 0;
+    background: white;
+    z-index: 5000;
+    display: none; /* Hidden by default */
+    overflow-y: auto;
+    padding: 40px 20px;
+}
+
+.page-active {
+    display: block !important;
+    animation: slideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+.letter-content {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* --- 6. THE SECRET CORNER HEART --- */
+.corner-feature {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 200;
+}
+
+.small-heart img {
+    width: 20px;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 8px rgba(255, 77, 77, 0.3));
+    transition: transform 0.3s;
+}
+
+.small-heart:hover img {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* --- 7. GLOBAL ANIMATIONS --- */
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    40% { transform: scale(1.05); }
+    50% { transform: scale(1.15); }
+}
+
+.beating {
+    animation: beat 1.4s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- THE ELEGANT VIRTUAL PAGE --- */
+#letter-page {
+    position: fixed;
+    inset: 0;
+    background: #fffafa; /* Snow White */
+    z-index: 5000;
+    display: none; 
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Elegant Reveal Animation */
+.page-active {
+    display: block !important;
+    animation: elegantFade 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes elegantFade {
+    from { opacity: 0; transform: scale(1.02); filter: blur(10px); }
+    to { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+.letter-paper {
+    max-width: 1000px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 80px 60px;
+    position: relative;
+    box-shadow: 
+        0 1px 1px rgba(0,0,0,0.1), 
+        0 10px 0 -5px #eee, 
+        0 10px 1px -4px rgba(0,0,0,0.1), 
+        0 20px 0 -10px #eee, 
+        0 20px 1px -9px rgba(0,0,0,0.1);
+    border: 1px solid #f3e5f5;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.letter-title {
+    font-family: 'Cinzel', serif;
+    color: #ff4d4d;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: 1px double #ff4d4d;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.letter-body {
+    font-family: 'Quicksand', sans-serif;
+    line-height: 2.2;
+    font-size: 1.1rem;
+    color: #4a4a4a;
+    text-align: justify;
+    white-space: pre-wrap;
+    transition: opacity 0.4s ease;
+    min-height: 400px; 
+    flex-grow: 1; 
+    overflow-y: auto; 
+    padding-right: 10px; 
+
+}
+
+.letter-footer {
+    margin-top: 60px;
+    text-align: right;
+    font-family: 'Cinzel', serif;
+    color: #ff4d4d;
+}
+
+#close-letter-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-family: 'Quicksand';
+    font-size: 0.9rem;
+    color: #aaa;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    pointer-events: auto !important;
+}
+
+#close-letter-btn:hover {
+    color: #ff4d4d;
+    letter-spacing: 4px;
+}
+
+#note-display {
+    transition: opacity 0.5s ease-in-out;
+    padding: 20px;
+    background: #fff9e6;
+    border-left: 5px solid #ff4d4d;
+    margin-top: 20px;
+    min-height: 50px;
+    font-style: italic;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+.start-quiz-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+}
+
+.start-quiz-btn:hover {
+    transform: scale(1.05);
+    background: #ff3333;
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.5);
+}
+
+#quiz-container {
+    display: none;
+    opacity: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#question-text {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.options-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+#next-page-btn, #prev-page-btn {
+    margin-top: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ff4d4d;
+    background: transparent;
+    color: #ff4d4d;
+    padding: 8px 20px;
+    font-size: 0.8rem;
+    #next-page-btn {
+    flex-shrink: 0;
+    min-height: 45px;
+    min-width: 150px;
+}
+}
+
+#next-page-btn:hover, #prev-page-btn:hover {
+    background: #fce4ec;
+}
